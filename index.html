@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Do You Love Me?</title>
+<style>
+/* PAGE WITH BACKGROUND IMAGE */
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', Arial, sans-serif;
+  background-image: url('Love Background Wallpapers Backgrounds, Love, Love Background, Love Wallpaper Background Image And Wallpaper for Free Download.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.25);
+  z-index: 0;
+}
+
+.teddy {
+  position: absolute;
+  pointer-events: none;
+  filter: drop-shadow(0 15px 20px rgba(0,0,0,0.25));
+}
+
+.card {
+  background: rgba(255,255,255,0.97);
+  padding: 70px 50px 90px;
+  border-radius: 32px;
+  text-align: center;
+  box-shadow: 0 30px 55px rgba(0,0,0,0.3);
+  position: relative;
+  z-index: 1;
+  width: min(520px, 92%);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: -30px;
+  background: radial-gradient(circle, rgba(255,200,200,0.55), transparent 70%);
+  z-index: -1;
+  border-radius: 40px;
+}
+
+h1 {
+  color: #ff4f6d;
+  font-size: clamp(32px, 6vw, 40px);
+  margin-bottom: 35px;
+}
+
+button {
+  padding: 16px 50px;
+  font-size: clamp(18px, 5vw, 26px);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+  margin-top: 15px;
+}
+
+#yesBtn { background: linear-gradient(180deg, #6fdc6f, #3cbf3c); color: white; margin-right: 10px; }
+#noBtn { background: linear-gradient(180deg, #ff6b6b, #ff3b3b); color: white; position: absolute; }
+#nextBtn { background: linear-gradient(180deg, #ff8c42, #ff5e5e); color: white; display: none; }
+
+#message, #secondMessage, #countdown {
+  display: none;
+  margin-top: 20px;
+  font-size: clamp(22px, 6vw, 32px);
+  color: #ff4f6d;
+  font-weight: bold;
+}
+
+.heart {
+  position: absolute;
+  font-size: 40px;
+  animation: rise 2s ease-out forwards;
+  pointer-events: none;
+}
+
+.floating-teddy {
+  position: absolute;
+  animation: teddyRise 3s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes rise {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-80vh) scale(1.2); opacity: 0; }
+}
+
+@keyframes teddyRise {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-60vh) scale(1); opacity: 0; }
+}
+
+@media (max-width: 600px) {
+  .card { 
+    padding: 80px 30px 100px;
+    width: 95%;
+  }
+  h1 { font-size: clamp(28px, 7vw, 38px); }
+  button { 
+    padding: 18px 60px;
+    font-size: clamp(20px, 6vw, 28px); 
+  }
+  .heart { font-size: 25px; }
+  .floating-teddy { width: 70px !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Do u think Younes loves you 🤔??</h1>
+  <button id="yesBtn">Yes 💖</button>
+  <button id="noBtn">No 😏</button>
+  <div id="message">Ofccc😚 More than words can explain Sweetieeee 🤭❤️</div>
+  <button id="nextBtn">🥰</button>
+  <div id="secondMessage">my love for you Rihabbb  is real, constant, and forever !❤️</div>
+  <div id="countdown"></div>
+</div>
+
+<audio id="loveSong" src="beabadoobee Glue Song Lyrics.mp3" loop autoplay></audio>
+
+<script>
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const message = document.getElementById("message");
+const nextBtn = document.getElementById("nextBtn");
+const secondMessage = document.getElementById("secondMessage");
+const countdownEl = document.getElementById("countdown");
+const card = document.querySelector(".card");
+const song = document.getElementById("loveSong");
+
+// YES BUTTON
+yesBtn.onclick = () => {
+  song.volume = 0.8;
+  song.play();
+
+  message.style.display = "block";
+  yesBtn.style.display = "none";
+  noBtn.style.display = "none";
+  nextBtn.style.display = "block";
+
+  for (let i = 0; i < 30; i++) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.textContent = "🧸";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.top = window.innerHeight + "px";
+    heart.style.fontSize = (25 + Math.random() * 35) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 2500);
+  }
+
+  for (let i = 0; i < 10; i++) {
+    const teddy = document.createElement("img");
+    teddy.src = "teddy.png";
+    teddy.className = "floating-teddy";
+    teddy.style.left = Math.random() * (window.innerWidth - 80) + "px";
+    teddy.style.top = window.innerHeight + "px";
+    teddy.style.width = (70 + Math.random() * 90) + "px";
+    teddy.style.opacity = 0.6 + Math.random() * 0.4;
+    document.body.appendChild(teddy);
+    setTimeout(() => teddy.remove(), 3000);
+  }
+};
+
+// NEXT BUTTON
+nextBtn.onclick = () => {
+  secondMessage.style.display = "block";
+  nextBtn.style.display = "none";
+
+  // Countdown from 14/2/2024 to today
+  const startDate = new Date("2025-02-14");
+  const today = new Date();
+  const diffTime = today - startDate;
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  countdownEl.textContent = `And this period of days has passed: ${diffDays}`;
+  countdownEl.style.display = "block";
+};
+
+// NO BUTTON stays inside card
+function moveNo() {
+  const padding = 10;
+  const maxX = card.clientWidth - noBtn.offsetWidth - padding;
+  const maxY = card.clientHeight - noBtn.offsetHeight - padding;
+  noBtn.style.left = Math.random() * maxX + "px";
+  noBtn.style.top = Math.random() * maxY + "px";
+}
+
+noBtn.addEventListener("mouseenter", moveNo);
+noBtn.addEventListener("touchstart", moveNo);
+</script>
+
+</body>
+</html>
